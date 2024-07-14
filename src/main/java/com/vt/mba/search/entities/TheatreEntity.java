@@ -4,7 +4,6 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -46,7 +45,7 @@ public class TheatreEntity {
 	@JoinColumn(name = "location_id")
 	private LocationEntity location;
 
-	@OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "theatre")
 	private Set<ScreenEntity> screens;
 
 	@ManyToMany

@@ -29,7 +29,6 @@ public class TheatreServiceImpl implements TheatreService {
 	public static final String LOG_THEATRE_SERVICE = "[TheatreService] - {}";
 
 	private final TheatreRepo theatreRepo;
-//	private final ScreenRepo screenRepo;
 	private final EventRepo eventRepo;
 
 	/**
