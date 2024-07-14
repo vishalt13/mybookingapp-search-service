@@ -20,6 +20,8 @@ public class OfferServiceImpl implements OfferService {
 
 	@Override
 	public List<Theatre> getTheatreListWithOffer(String offerId) {
+
+		log.debug(LOG_OFFER_SERVICE, "Get Theatre List With Offer " + offerId);
 		// TODO Auto-generated method stub
 		return null;
 	}

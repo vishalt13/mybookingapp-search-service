@@ -19,6 +19,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<Movie> getMovies(String city, String lang, String genre) {
+		log.debug(LOG_MOVIE_SERVICE, "Get Movies");
 		// TODO Auto-generated method stub
 		return null;
 	}

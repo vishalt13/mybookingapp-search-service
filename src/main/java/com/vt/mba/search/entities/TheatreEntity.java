@@ -25,7 +25,7 @@ public class TheatreEntity {
 	private Integer theatreId;
 
 	@Column(name = "partner_theatre_id")
-	private Integer partnerTheatreId;
+	private String partnerTheatreId;
 
 	@Column(name = "name")
 	private String name;
@@ -37,7 +37,7 @@ public class TheatreEntity {
 	private String address;
 
 	@ManyToOne
-	@JoinColumn(name = "partner")
+	@JoinColumn(name = "partner_id")
 	private PartnerEntity partner;
 
 	@ManyToOne
@@ -45,9 +45,7 @@ public class TheatreEntity {
 	private LocationEntity location;
 
 	@ManyToMany
-	@JoinTable(name = "map_theatre_offer", 
-				joinColumns = @JoinColumn(name = "theatre_id"), 
-				inverseJoinColumns = @JoinColumn(name = "offer_id"))
+	@JoinTable(name = "map_theatre_offer", joinColumns = @JoinColumn(name = "theatre_id"), inverseJoinColumns = @JoinColumn(name = "offer_id"))
 	private Set<OfferEntity> offers;
 
 }
