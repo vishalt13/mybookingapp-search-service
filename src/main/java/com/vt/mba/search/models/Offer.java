@@ -1,5 +1,7 @@
 package com.vt.mba.search.models;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,27 +16,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class Theatre {
+public class Offer {
 
-	@JsonProperty("theatreId")
-	private Integer theatreId;
+	@JsonProperty("offerId")
+	private Integer offerId;
 
 	@JsonProperty("name")
 	private String name;
 
-	@JsonProperty("partnerName")
-	private String partnerName;
+	@JsonProperty("description")
+	private String description;
 
-	@JsonProperty("address")
-	private String address;
+	@JsonProperty("termsAndConditions")
+	private String termsAndConditions;
 
-	@JsonProperty("city")
-	private String city;
+	@JsonProperty("availablefrom")
+	private LocalDateTime availablefrom;
 
-	@JsonProperty("state")
-	private String state;
+	@JsonProperty("expiresOn")
+	private LocalDateTime expiresOn;
 
-	@JsonProperty("country")
-	private String country;
+	@JsonProperty("discount")
+	private Double discount;
 
 }
