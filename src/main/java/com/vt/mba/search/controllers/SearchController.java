@@ -46,7 +46,7 @@ public class SearchController {
 			@RequestParam(name = "date", required = false) String date) {
 
 		log.info(LOG_SEARCH_CONTROLLER, "Get Theatre List");
-		List<Theatre> theatreList = theatreService.getTheatreListResponse(city, movie, date);
+		List<Theatre> theatreList = theatreService.getTheatreList(city, movie, date);
 
 		if (CollectionUtils.isEmpty(theatreList)) {
 			log.warn(LOG_SEARCH_CONTROLLER, "No movie found given criteria");
@@ -78,12 +78,12 @@ public class SearchController {
 		return new ResponseEntity<>(movieResponse, HttpStatus.OK);
 	}
 
-	@GetMapping(" /theatres/offer/{offerId}")
+	@GetMapping("/theatres/offer/{offerId}")
 	public ResponseEntity<TheatreResponse> getTheatreListWithOffer(
 			@RequestHeader(name = "Authorization", required = true) String authorization,
 			@RequestHeader(name = "version", required = true) String version,
 			@RequestHeader(name = "messageId", required = true) String messageId,
-			@PathVariable(name = "offerId", required = true) String offerId) {
+			@PathVariable(name = "offerId", required = true) Integer offerId) {
 
 		log.info(LOG_SEARCH_CONTROLLER, "Get Theatre List with OfferId : " + offerId);
 		List<Theatre> theatreList = offerService.getTheatreListWithOffer(offerId);
@@ -98,13 +98,13 @@ public class SearchController {
 		return new ResponseEntity<>(theareResponse, HttpStatus.OK);
 	}
 
-	@GetMapping("/offers/{city}/{theatreId}")
+	@GetMapping("/offers/{city}")
 	public ResponseEntity<OfferResponse> getOffersForCityTheatre(
 			@RequestHeader(name = "Authorization", required = true) String authorization,
 			@RequestHeader(name = "version", required = true) String version,
 			@RequestHeader(name = "messageId", required = true) String messageId,
 			@PathVariable(name = "city", required = true) String city,
-			@RequestParam(name = "theatreId", required = false) String theatreId) {
+			@RequestParam(name = "theatreId", required = false) Integer theatreId) {
 
 		log.info(LOG_SEARCH_CONTROLLER, "Get Theatre List");
 		List<Offer> offers = offerService.getOffersForCityTheatre(city, theatreId);

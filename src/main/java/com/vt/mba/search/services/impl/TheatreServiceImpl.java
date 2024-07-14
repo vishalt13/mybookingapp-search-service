@@ -3,7 +3,6 @@ package com.vt.mba.search.services.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ import com.vt.mba.search.models.Theatre;
 import com.vt.mba.search.repos.EventRepo;
 import com.vt.mba.search.repos.TheatreRepo;
 import com.vt.mba.search.services.TheatreService;
+import com.vt.mba.search.utils.CommonUtils;
 import com.vt.mba.search.utils.Utils;
 
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,13 @@ public class TheatreServiceImpl implements TheatreService {
 
 	private final TheatreRepo theatreRepo;
 	private final EventRepo eventRepo;
+	private final CommonUtils commonUtils;
 
 	/**
 	 * Retrieve list of Theatre for given city, movie, date
 	 */
 	@Override
-	public List<Theatre> getTheatreListResponse(String city, String movie, String date) {
+	public List<Theatre> getTheatreList(String city, String movie, String date) {
 
 		log.info(LOG_THEATRE_SERVICE, city + " " + movie + " " + date);
 		List<TheatreEntity> theatreRecords = theatreRepo.findByLocationCityIgnoreCase(city);
@@ -48,36 +49,7 @@ public class TheatreServiceImpl implements TheatreService {
 			filteredTheatreList = theatreRecords;
 		}
 
-		return populateTheatreList(filteredTheatreList);
-	}
-
-	private List<Theatre> populateTheatreList(List<TheatreEntity> theatreRecords) {
-		log.debug(LOG_THEATRE_SERVICE, "populate Theatre List");
-
-		if (!CollectionUtils.isEmpty(theatreRecords)) {
-			List<Theatre> theatreList = new ArrayList<>();
-
-			theatreRecords.stream().forEach(rec -> {
-				Theatre theatre = new Theatre();
-				theatre.setTheatreId(rec.getTheatreId());
-				theatre.setName(rec.getName());
-				theatre.setAddress(rec.getAddress());
-				if (Objects.nonNull(rec.getPartner())) {
-					theatre.setPartnerName(rec.getPartner().getPartnerName());
-				}
-
-				if (Objects.nonNull(rec.getLocation())) {
-					theatre.setCity(rec.getLocation().getCity());
-					theatre.setState(rec.getLocation().getState());
-					theatre.setCountry(rec.getLocation().getCountry());
-				}
-
-				theatreList.add(theatre);
-			});
-			return theatreList;
-		}
-
-		return new ArrayList<>();
+		return commonUtils.populateTheatreList(filteredTheatreList);
 	}
 
 	private List<TheatreEntity> getTheatresByMovieDateCity(String city, String movie, String date) {

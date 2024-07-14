@@ -7,8 +7,8 @@ import com.vt.mba.search.models.Theatre;
 
 public interface OfferService {
 
-	List<Theatre> getTheatreListWithOffer(String offerId);
+	List<Theatre> getTheatreListWithOffer(Integer offerId);
 
-	List<Offer> getOffersForCityTheatre(String city, String theatreId);
+	List<Offer> getOffersForCityTheatre(String city, Integer theatreId);
 
 }

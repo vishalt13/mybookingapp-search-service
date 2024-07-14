@@ -1,5 +1,6 @@
 package com.vt.mba.search.entities;
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -50,6 +51,6 @@ public class TheatreEntity {
 
 	@ManyToMany
 	@JoinTable(name = "map_theatre_offer", joinColumns = @JoinColumn(name = "theatre_id"), inverseJoinColumns = @JoinColumn(name = "offer_id"))
-	private Set<OfferEntity> offers;
+	private List<OfferEntity> offers;
 
 }
