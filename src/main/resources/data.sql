@@ -11,7 +11,7 @@ INSERT INTO Theatre (theatre_id, partner_theatre_id, name, zipcode, address, par
 INSERT INTO Screen (screen_id, allocated_capacity, type, theatre_id) VALUES (1001, 200, 'IMAX',1);
 
 INSERT INTO Event (event_id, partner_event_id, start_ts, movie_name, language, genre, duration, available_seat_count, screen_id)
-	VALUES (12233, 'PVR-1001-0007', '2024-08-15T10:30:00','Top Gun: Maverick', 'English', 'Action', 120, 99, 1001);
+	VALUES (12233, 'PVR-1001-0007', '2024-07-15T10:30:00','Top Gun: Maverick', 'English', 'Action', 120, 99, 1001);
 
 INSERT INTO Tier (tier_id, type, price, event_id) VALUES (1, 'Silver', 220, 12233);
 INSERT INTO Tier (tier_id, type, price, event_id) VALUES (2, 'Gold', 280, 12233);
